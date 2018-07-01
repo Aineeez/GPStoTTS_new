@@ -30,23 +30,7 @@ public class MainActivity extends AppCompatActivity {
         latitudeField = (TextView) findViewById(R.id.latitudeResultTextView);
         longitudeField = (TextView) findViewById(R.id.longitudeResultTextView);
 
-        // Get the location manager
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        // Define the criteria how to select the locatioin provider -> use
-        // default
 
-        Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria, false);
-        Location location = locationManager.getLastKnownLocation(provider);
-
-//      //Initialize the location fields
-        if (location != null) {
-            System.out.println("Provider " + provider + " has been selected.");
-            onLocationChanged(location);
-        } else {
-            latitudeField.setText("Location not available");
-            longitudeField.setText("Location not available");
-        }
 
         Button talkBtn = (Button) findViewById(R.id.talkBtn);
         //R steht für Ressourcen, "i" tippen, dann aus der Liste wählen, wo meine im Layout-Fenster erstellten Buttons etc. stehen
@@ -67,50 +51,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    //Liest aus der Variable "location" die beiden Bestandteile longitude und latitude raus und zeigt sie in den Textfelder dafür an
-    public void onLocationChanged(Location location) {
-        int lat = (int) (location.getLatitude());
-        int lng = (int) (location.getLongitude());
-        latitudeField.setText(String.valueOf(lat));
-        longitudeField.setText(String.valueOf(lng));
-    }
-    /* Request updates at startup */
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        locationManager.requestLocationUpdates(provider, 400, 1, this);
-    }
-
-
-    /* Remove the locationlistener updates when Activity is paused */
-    @Override
-    protected void onPause() {
-        super.onPause();
-        locationManager.removeUpdates(this);
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        Toast.makeText(this, "Enabled new provider " + provider,
-                Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        Toast.makeText(this, "Disabled provider " + provider,
-                Toast.LENGTH_SHORT).show();
-    }
-
 
 
 }

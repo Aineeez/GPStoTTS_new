@@ -20,7 +20,7 @@ public class ShowLocationActivity extends Activity implements LocationListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_show_location);
         latituteField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
 
