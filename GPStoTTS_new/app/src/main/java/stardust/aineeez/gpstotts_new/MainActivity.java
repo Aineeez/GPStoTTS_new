@@ -1,26 +1,28 @@
 package stardust.aineeez.gpstotts_new;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.location.LocationManager;
 
 
 public class MainActivity extends AppCompatActivity {
     private TextView latitudeField;
     private TextView longitudeField;
-    private LocationManager locationManager;
-    private String provider;
+    public Button talkBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init(); //das ruft die Methode unten zum Verknüpfen der beiden Activities per Talk-Button
+
+
         latitudeField = (TextView) findViewById(R.id.latitudeResultTextView);
         longitudeField = (TextView) findViewById(R.id.longitudeResultTextView);
-
 
 
         Button showBtn = (Button) findViewById(R.id.showBtn);
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) { //das ist ein OnClick-Event, innerhalb der Klammern definieren, was passieren soll
-                //GPS-Daten auslesen fehlt hier
 
                    TextView latitudeResultTextView = (TextView) findViewById(R.id.latitudeResultTextView);
                    latitudeResultTextView.setText("50.83592");
@@ -43,5 +44,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public void init() {
+        talkBtn = (Button) findViewById(R.id.talkBtn); //hier ist was doppelt gemoppelt - zwei listener für den einen Button
+        talkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent hearGPS = new Intent(MainActivity.this, ShowLocationActivity.class);
+                startActivity(hearGPS);
+            }
+        });
+    }
 
 }
