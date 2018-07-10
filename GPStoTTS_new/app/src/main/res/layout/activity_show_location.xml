@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="5dip"
-            android:text="Longitude"
+            android:text="Longitude:"
             android:textSize="20dip"></TextView>
 
         <TextView
