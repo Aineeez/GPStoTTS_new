@@ -53,7 +53,7 @@ public class ShowLocationActivity extends Activity implements LocationListener {
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
 
-            ActivityCompat.requestPermissions(this, requestedPermissions, MY_PERMISSIONS_REQUEST_FINE_LOCATION); //das ist aus der Doku, nicht aus dem YT-Tutorial
+            //ActivityCompat.requestPermissions(this, requestedPermissions, MY_PERMISSIONS_REQUEST_FINE_LOCATION); //das ist aus der Doku, nicht aus dem YT-Tutorial
 
             return;
         }
@@ -121,7 +121,7 @@ public class ShowLocationActivity extends Activity implements LocationListener {
                 Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+    /*@Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
         switch (requestCode) {
@@ -151,5 +151,7 @@ public class ShowLocationActivity extends Activity implements LocationListener {
                 //do something
                 break;
         }
+
     }
+*/
 }
