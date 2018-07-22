@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init() {
-        talkBtn = (Button) findViewById(R.id.talkBtn); //hier ist was doppelt gemoppelt - zwei listener für den einen Button
+        talkBtn = (Button) findViewById(R.id.talkBtn);
         talkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
