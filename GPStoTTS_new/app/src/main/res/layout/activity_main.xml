@@ -56,8 +56,8 @@
         android:layout_height="wrap_content"
         android:text="Latitude: "
         android:textSize="20dip"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="58dp"></TextView>
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="100dp"></TextView>
 
     <TextView
         android:id="@+id/TextView02"
@@ -66,7 +66,7 @@
         android:text="unknown"
         android:textSize="20dip"
         tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="58dp"></TextView>
+        tools:layout_editor_absoluteY="100dp"></TextView>
 
     <TextView
         android:id="@+id/TextView03"
@@ -74,8 +74,10 @@
         android:layout_height="wrap_content"
         android:text="Longitude:"
         android:textSize="20dip"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="16dp"></TextView>
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/TextView01"
+        app:layout_constraintRight_toLeftOf="@+id/TextView04"
+        android:layout_marginRight="18dp"></TextView>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -84,13 +86,17 @@
         tools:layout_editor_absoluteX="128dp"
         tools:layout_editor_absoluteY="16dp">
 
-        <TextView
-            android:id="@+id/TextView04"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="unknown"
-            android:textSize="20dip"></TextView>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="unknown"
+        android:textSize="20dip"
+        tools:layout_editor_absoluteX="128dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/TextView02"></TextView>
 
 
 </android.support.constraint.ConstraintLayout>
