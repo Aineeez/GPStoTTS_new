@@ -1,5 +1,6 @@
 package stardust.aineeez.gpstotts_new;
 
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,8 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Locale;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     public Button talkBtn;
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private double longitude = -1;
     private double latitude = -1;
     long request_Interval = 1000; //nach 1 Sekunde werden neue GPS-Daten abgefragt
+
+    private TextToSpeech myTTS;
 
     class TalkOnClickListener implements View.OnClickListener{
         //Override tut eigentlich nichts, außer zu prüfen, ob es die darunterstehende Methode auch wirklich
@@ -121,14 +126,37 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         latitudeField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
 
+        //Neue Instanz eines TTS-Objekts anlegen, welches nachher das Sprechen ausführt
+        //darin auch die Sprache der TTS auswählen und
+        //Prüfen, ob die Daten für die TTS vorhanden sind
+        myTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+            @Override
+            public void onInit(int status){
+                if (status == TextToSpeech.SUCCESS){
+                    int result = myTTS.setLanguage(Locale.GERMAN);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                        Log.e("TTS", "Language not supported");
+                    }else {
+
+                    }
+                }else {
+                    Log.e("TTS", "initialization failed");
+                }
+            }
+        });
+
+        //Der Listener wartet darauf, dass der Button geklickt wird
+        //und führt dann aus, was in onClick() definiert ist
         talkBtn.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v){
                         TextView TTStext = (TextView)findViewById(R.id.TTSdummy);
                         TTStext.setText("TTS spricht gerade");
+                        String myDummyGPSData = "The longitude is thirteen point five nine two seven one seven";
+                        myTTS.speak(myDummyGPSData, TextToSpeech.QUEUE_ADD, null);
                     }
-                }
-        );
+        });
 
         //Instanziierung des LocationRequests an das OS
         this.locationRequest = LocationRequest.create();
@@ -174,12 +202,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         //um den Parameter zu übergeben, musste ich oben die Klasse LocationSettingsOnFailureListener anlegen
         //ich füge ein Merkmal "OnFailureListener" mittels der add..()-Methode hinzu zur Instanz von checkLocationSettings
         checkLocationSettings.addOnFailureListener(new LocationSettingsOnFailureListener(this));
-
-
     }
 
     /* Request updates at startup */
-
     //GPS-Request muss in onResume rein, da es dann wieder ausgeführt wird, auch wenn die App
     //mal im Hintergrund lief oder eine andere Activity geöffnet wurde
     //würde sie bei onCreate() schon ausgeführt, wäre das nicht der Fall
@@ -251,5 +276,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onProviderDisabled(String provider) {
         Toast.makeText(this, "Disabled provider " + provider,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy(){
+        //TTS-Ressourcen freigeben beim Schließen der App
+        if(myTTS != null){
+            myTTS.stop();
+            myTTS.shutdown();
+        }
+        super.onDestroy();
     }
 }
