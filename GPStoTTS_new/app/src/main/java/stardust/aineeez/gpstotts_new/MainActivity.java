@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private double latitude = -1;
     long request_Interval = 1000; //nach 1 Sekunde werden neue GPS-Daten abgefragt
 
-
     class TalkOnClickListener implements View.OnClickListener{
         //Override tut eigentlich nichts, außer zu prüfen, ob es die darunterstehende Methode auch wirklich
         //in der Elternklasse gibt, falls nicht (z. B. weil hier ein Tippfehler gemacht wurde), bekommt
@@ -95,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
-
     public void updateLocation(Location location){
         //mit getLongitude() hole ich den Longitude-Wert aus der gesamten Location
         double longitude = location.getLongitude();
@@ -110,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         this.longitudeField.setText(Double.toString(longitude));
     }
 
-
     /** Called when the activity is first created. Vgl. life-cycle-Diagramm für Activities */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,6 +120,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         //Boxen, wo die Koordinaten angezeigt werden
         latitudeField = (TextView) findViewById(R.id.TextView02);
         longitudeField = (TextView) findViewById(R.id.TextView04);
+
+        talkBtn.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        TextView TTStext = (TextView)findViewById(R.id.TTSdummy);
+                        TTStext.setText("TTS spricht gerade");
+                    }
+                }
+        );
 
         //Instanziierung des LocationRequests an das OS
         this.locationRequest = LocationRequest.create();
@@ -168,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         //um den Parameter zu übergeben, musste ich oben die Klasse LocationSettingsOnFailureListener anlegen
         //ich füge ein Merkmal "OnFailureListener" mittels der add..()-Methode hinzu zur Instanz von checkLocationSettings
         checkLocationSettings.addOnFailureListener(new LocationSettingsOnFailureListener(this));
+
 
     }
 
