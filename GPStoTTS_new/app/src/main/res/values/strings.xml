@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">GPStoTTS</string>
-    <string name="longitude">Longitude:</string>
-    <string name="unknown_value">unknown</string>
-    <string name="latitude">Latitude:</string>
+    <string name="longitude">Längengrad:</string>
+    <string name="unknown_value">wird gesucht...</string>
+    <string name="latitude">Breitengrad:</string>
+    <string name="hint">Bitte auf "TTS" klicken, um aktuelle GPS-Position vorlesen zu lassen</string>
+    <string name="talk_button">TTS</string>
 </resources>

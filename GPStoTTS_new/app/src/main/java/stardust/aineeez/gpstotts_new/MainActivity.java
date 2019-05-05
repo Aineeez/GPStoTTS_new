@@ -136,12 +136,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     int result = myTTS.setLanguage(Locale.GERMAN);
                     if (result == TextToSpeech.LANG_MISSING_DATA
                             || result == TextToSpeech.LANG_NOT_SUPPORTED){
-                        Log.e("TTS", "Language not supported");
+                        Log.e("TTS", "Sprache wird nicht unterstützt");
                     }else {
 
                     }
                 }else {
-                    Log.e("TTS", "initialization failed");
+                    Log.e("TTS", "Initialisierung fehlgeschlagen");
                 }
             }
         });
@@ -151,9 +151,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         talkBtn.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v){
-                        TextView TTStext = (TextView)findViewById(R.id.TTSdummy);
-                        TTStext.setText("TTS spricht gerade");
-                        String myDummyGPSData = "The longitude is thirteen point five nine two seven one seven";
+                        //TextView TTStext = (TextView)findViewById(R.id.TTSdummy);
+                        //TTStext.setText("TTS spricht gerade");
+                        String myDummyGPSData = "Der Längengrad ist 13,592717";
+                        //hier findet das eigentliche Sprechen statt
                         myTTS.speak(myDummyGPSData, TextToSpeech.QUEUE_ADD, null);
                     }
         });
