@@ -155,7 +155,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         //TTStext.setText("TTS spricht gerade");
                         String myDummyGPSData = "Der Längengrad ist 13,592717";
                         //hier findet das eigentliche Sprechen statt
-                        myTTS.speak(myDummyGPSData, TextToSpeech.QUEUE_ADD, null);
+                        //String latitude = )
+                        myTTS.speak("Sie befinden sich aktuell an Längengrad ", TextToSpeech.QUEUE_ADD, null);
+                        myTTS.speak(Double.toString(longitude), TextToSpeech.QUEUE_ADD, null);
+                        myTTS.speak("und Breitengrad", TextToSpeech.QUEUE_ADD, null);
+                        myTTS.speak(Double.toString(latitude), TextToSpeech.QUEUE_ADD, null);
                     }
         });
 
