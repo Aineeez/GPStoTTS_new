@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private TextToSpeech myTTS;
 
-    class TalkOnClickListener implements View.OnClickListener{
+    //class TalkOnClickListener implements View.OnClickListener{
         //Override tut eigentlich nichts, außer zu prüfen, ob es die darunterstehende Methode auch wirklich
         //in der Elternklasse gibt, falls nicht (z. B. weil hier ein Tippfehler gemacht wurde), bekommt
         //der Programmierer einen Hinweis
-        @Override
-        public void onClick(View v) {
+        //@Override
+        //public void onClick(View v) {
             //hier noch TTS-Spaß implementieren, der bei Click aktiv wird
-        }
-    }
+        //}
+    //}
 
     //diese Klasse ist dazu da, auf eine Fehlermeldung bei der Kommunikation mit dem OS zu horchen
     class LocationSettingsOnFailureListener implements OnFailureListener {
@@ -153,9 +153,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     public void onClick(View v){
                         //TextView TTStext = (TextView)findViewById(R.id.TTSdummy);
                         //TTStext.setText("TTS spricht gerade");
-                        String myDummyGPSData = "Der Längengrad ist 13,592717";
+                        //String myDummyGPSData = "Der Längengrad ist 13,592717";
                         //hier findet das eigentliche Sprechen statt
-                        //String latitude = )
                         myTTS.speak("Sie befinden sich aktuell an Längengrad ", TextToSpeech.QUEUE_ADD, null);
                         myTTS.speak(Double.toString(longitude), TextToSpeech.QUEUE_ADD, null);
                         myTTS.speak("und Breitengrad", TextToSpeech.QUEUE_ADD, null);
