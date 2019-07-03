@@ -46,16 +46,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private TextToSpeech myTTS;
 
-    //class TalkOnClickListener implements View.OnClickListener{
-        //Override tut eigentlich nichts, außer zu prüfen, ob es die darunterstehende Methode auch wirklich
-        //in der Elternklasse gibt, falls nicht (z. B. weil hier ein Tippfehler gemacht wurde), bekommt
-        //der Programmierer einen Hinweis
-        //@Override
-        //public void onClick(View v) {
-            //hier noch TTS-Spaß implementieren, der bei Click aktiv wird
-        //}
-    //}
-
     //diese Klasse ist dazu da, auf eine Fehlermeldung bei der Kommunikation mit dem OS zu horchen
     class LocationSettingsOnFailureListener implements OnFailureListener {
         int REQUEST_CHECK_SETTINGS = 1; //nicht mehr klar, weshalb das hier 1 sein muss
